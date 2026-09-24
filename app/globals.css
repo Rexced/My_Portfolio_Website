@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* Light, minimal: white page, near-black text, jade accent */
+:root {
+  --bg: #ffffff;
+  --surface: #f0f0f0;
+  --surface-2: #e6e6e6;
+  --border: rgb(0 0 0 / 0.09);
+  --border-strong: rgb(0 0 0 / 0.17);
+  --fg: #0b0f0d;
+  --muted: #3f3f3f;
+  --accent: #0b7a54; /* jade; 5.3:1 on white */
+  --accent-soft: #e6f3ed;
+  --accent-2: #1d6b85;
+}
+
+/* Dark theme, toggled via <html data-theme="dark"> (set before paint by the script in layout.tsx) */
+:root[data-theme="dark"] {
+  --bg: #0a0e0d;
+  --surface: #111715;
+  --surface-2: #18201d;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --fg: #e7ece9;
+  --muted: #b8bdbb;
+  --accent: #3ecf8e;
+  --accent-soft: rgb(62 207 142 / 0.12);
+  --accent-2: #7cc7e8;
+  color-scheme: dark;
+}
+
+/* Dark "island" for the terminal: utilities inside it pick up these values */
+.terminal {
+  --bg: #0e1312;
+  --surface: #0e1312;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.14);
+  --fg: #e4ebe8;
+  --muted: #86938e;
+  --accent: #3ddc97;
+  --accent-2: #7cc7e8;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  background: var(--bg);
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Solid highlighter-style selection */
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Theme switch: the new theme is wiped in by animating this pseudo-element's clip-path (theme-toggle.tsx) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* The theme switch gets its own layer, shown live above the wipe so its knob animation is visible */
+.theme-toggle {
+  view-transition-name: theme-toggle;
+}
+::view-transition-old(theme-toggle) {
+  display: none;
+}
+::view-transition-group(theme-toggle),
+::view-transition-new(theme-toggle) {
+  animation: none;
+}
+
+/* Navbar height; Lenis honours this when scrolling to #anchors */
+section[id] {
+  scroll-margin-top: 4rem;
+}
+/* Project cards may still be mid-reveal (translated 24px down) when targeted */
+article[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Lenis recommended styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Packets travelling along pipeline connectors */
+.wire {
+  position: relative;
+  overflow: hidden;
+  background: var(--border-strong);
+}
+.wire::after {
+  content: "";
+  position: absolute;
+  background: var(--accent);
+  border-radius: 9999px;
+}
+.wire-x::after {
+  top: -1px;
+  left: -12px;
+  width: 12px;
+  height: 3px;
+  animation: packet-x 1.8s linear infinite;
+}
+.wire-y::after {
+  left: -1px;
+  top: -12px;
+  width: 3px;
+  height: 12px;
+  animation: packet-y 1.8s linear infinite;
+}
+@keyframes packet-x {
+  to {
+    left: 100%;
+  }
+}
+@keyframes packet-y {
+  to {
+    top: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .wire::after {
+    animation: none;
+  }
+  .wire::after {
+    display: none;
+  }
+}
