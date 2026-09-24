@@ -113,7 +113,7 @@ function ResumeMd() {
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12">
+    <section id="about" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12 lg:pl-20">
       <SectionHeading index="01" label="whoami" title="Who am I" />
 
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,34rem)] lg:gap-20 xl:grid-cols-[minmax(0,1fr)_minmax(0,40rem)] xl:gap-32">

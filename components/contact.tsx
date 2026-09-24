@@ -38,7 +38,7 @@ export function Contact() {
   const info = REGION_INFO[region]
 
   return (
-    <section id="contact" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12">
+    <section id="contact" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12 lg:pl-20">
       <SectionHeading index="04" label="contact" title="Let's build something scalable and secure" />
 
       {info.timezonePitch && (

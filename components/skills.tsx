@@ -3,7 +3,7 @@ import { skills } from "@/data/content"
 
 export function Skills() {
   return (
-    <section id="stack" className="mx-auto max-w-[1680px] px-4 pt-16 pb-24 sm:px-6 lg:px-12">
+    <section id="stack" className="mx-auto max-w-[1680px] px-4 pt-16 pb-24 sm:px-6 lg:px-12 lg:pl-20">
       <SectionHeading index="03" label="stack" title="Tools I use / used" />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

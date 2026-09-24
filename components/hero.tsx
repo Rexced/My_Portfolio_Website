@@ -181,7 +181,7 @@ export function Hero() {
       id="top"
       className="flex h-[100svh] flex-col pt-20 pb-[max(1.25rem,env(safe-area-inset-bottom))] lg:block lg:h-auto lg:pt-28 lg:pb-24"
     >
-      <div className="mx-auto flex min-h-0 w-full max-w-[1680px] flex-1 flex-col px-4 sm:px-6 lg:block lg:px-12">
+      <div className="mx-auto flex min-h-0 w-full max-w-[1680px] flex-1 flex-col px-4 sm:px-6 lg:block lg:px-12 lg:pl-20">
         <div className="flex min-h-0 flex-1 flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1fr)_30rem] lg:items-center lg:gap-12 xl:grid-cols-[minmax(0,1fr)_34rem]">
           {/* Vertically centred against the terminal column on desktop */}
           <motion.div

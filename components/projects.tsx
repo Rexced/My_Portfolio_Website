@@ -174,7 +174,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12">
+    <section id="projects" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12 lg:pl-20">
       <SectionHeading index="02" label="projects" title="Things I've built & secured" />
       <div className="space-y-8">
         {projects.map((p, i) => (
