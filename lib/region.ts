@@ -11,6 +11,10 @@ type RegionInfo = {
   availability: string
   /** Extra line shown only in the contact section */
   contactNote?: string
+  /** One-line slogan under the titles in the hero */
+  slogan?: string
+  /** Paragraph on working across timezones, shown under the contact heading */
+  timezonePitch?: string
 }
 
 export const REGION_INFO: Record<Region, RegionInfo> = {
@@ -26,12 +30,20 @@ export const REGION_INFO: Record<Region, RegionInfo> = {
     file: "/Portfolio/cv/saim-wajid-resume-us.pdf",
     downloadAs: "Saim_Wajid_Resume_US.pdf",
     availability: "Remote (GMT+5), flexible for US hours · Open to relocate (sponsorship required)",
+    slogan: "The timezone isn't a gap. It's a head start.",
+    // Pakistan has no daylight saving, so the gap to US Eastern is 9 hours in summer (EDT) and 10 in winter (EST)
+    timezonePitch:
+      "Pakistan (UTC+5) is 9–10 hours ahead of US Eastern time, depending on daylight saving. I can shift my day to overlap your mornings for standups, code reviews and live incidents, and when you hand work off at the end of your day, you wake up to progress: fixes pushed, pipelines run, notes waiting. Used right, the time difference makes your team's day longer, not slower.",
   },
   uk: {
     docName: "CV",
     file: "/Portfolio/cv/saim-wajid-cv-uk-ie.pdf",
     downloadAs: "Saim_Wajid_CV_UK_Ireland.pdf",
     availability: "Open to relocate (Glasgow · Edinburgh · Dublin; sponsorship required) or remote (UTC+5)",
+    // "Hours", not a number: the gap to UK/IE is 4 h in summer (BST/IST) and 5 h in winter
+    slogan: "Hours ahead, tea already in hand.",
+    timezonePitch:
+      "Pakistan (UTC+5) is 4–5 hours ahead of the UK and Ireland. That means several hours of overlap for standups, code reviews and live incidents, plus an early start on anything that needs to be ready by the time your day begins: fixes pushed, pipelines run, notes waiting.",
   },
 }
 

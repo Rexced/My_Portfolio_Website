@@ -41,10 +41,17 @@ export function Contact() {
     <section id="contact" className="mx-auto max-w-[1680px] px-4 py-24 sm:px-6 lg:px-12">
       <SectionHeading index="04" label="contact" title="Let's build something scalable and secure" />
 
+      {info.timezonePitch && (
+        <Reveal className="mb-12 px-6 sm:px-8">
+          <p className="font-mono text-xs text-muted">// working across timezones</p>
+          <p className="mt-3 leading-relaxed text-muted">{info.timezonePitch}</p>
+        </Reveal>
+      )}
+
       <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
         <Reveal className="rounded-2xl border border-border-strong bg-surface p-6 sm:p-8">
           <p className="max-w-md leading-relaxed text-muted">
-            Hiring for an Associate Cloud Engineer, Associate DevOps Engineer or Associate Security Analyst? I'm a 2026 CS graduate ready to start, and my inbox is open.
+            Hiring for an Associate Cloud Engineer, Associate DevOps Engineer or Associate Security Analyst? I'm a 2026 BSCS graduate ready to start, and my inbox is open.
           </p>
 
           <div className="mt-6 flex items-center gap-3">

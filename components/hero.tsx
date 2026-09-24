@@ -172,6 +172,8 @@ function Terminal() {
 }
 
 export function Hero() {
+  const { slogan } = REGION_INFO[useRegion().region]
+
   return (
     // Below lg the hero is exactly one screen tall (svh = smallest viewport, so browser bars never cover it):
     // the terminal shrinks to fit and the buttons sit just above the bottom edge.
@@ -191,18 +193,24 @@ export function Hero() {
             <h1 className="font-mono text-[clamp(2.5rem,12vw,3rem)] leading-none font-bold tracking-tight sm:text-[3rem] lg:text-[clamp(3rem,6.4vw,8.75rem)]">
               <ScrambleText text={profile.name} />
             </h1>
-            <p className="mt-4 ml-[1.5ch] flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[clamp(0.8rem,4vw,1rem)] text-accent sm:mt-6 sm:gap-x-4 sm:text-2xl xl:text-3xl">
-              {profile.titles.map((t, i) => (
-                <span key={t} className="flex items-center gap-3 sm:gap-4">
-                  {i > 0 && (
-                    <span className="text-muted" aria-hidden>
-                      /
-                    </span>
-                  )}
-                  {t}
-                </span>
-              ))}
-            </p>
+            {/* The indent is in the titles' ch units, so the slogan lines up with them despite its smaller sans font */}
+            <div className="mt-4 ml-[1.25ch] font-mono text-[clamp(0.8rem,4vw,1rem)] sm:mt-6 sm:text-2xl xl:text-3xl">
+              <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-accent sm:gap-x-4">
+                {profile.titles.map((t, i) => (
+                  <span key={t} className="flex items-center gap-3 sm:gap-4">
+                    {i > 0 && (
+                      <span className="text-muted" aria-hidden>
+                        /
+                      </span>
+                    )}
+                    {t}
+                  </span>
+                ))}
+              </p>
+              {slogan && (
+                <p className="mt-4 max-w-xl font-sans text-[clamp(0.9rem,4vw,1rem)] text-muted sm:mt-6 sm:text-lg xl:text-xl">{slogan}</p>
+              )}
+            </div>
           </motion.div>
 
           <motion.div
