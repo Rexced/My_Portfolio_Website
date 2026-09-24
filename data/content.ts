@@ -21,6 +21,8 @@ export const profile = {
 }
 
 export type PipelineNode = { label: string; detail: string }
+// An array is a fork: the previous node branches out to each of these side by side
+export type PipelineStep = PipelineNode | PipelineNode[]
 
 export type Project = {
   slug: string
@@ -30,7 +32,7 @@ export type Project = {
   summary: string
   tags: string[]
   metrics: { value: string; label: string }[]
-  pipeline: PipelineNode[]
+  pipeline: PipelineStep[]
   bullets: string[]
 }
 
@@ -102,23 +104,27 @@ export const projects: Project[] = [
     date: "Jun 2025",
     summary:
       "An old laptop turned into a headless Ubuntu server running my own DNS sinkhole, SIEM, photo cloud and media server, all behind zero-trust access.",
-    tags: ["Ubuntu Server", "Docker", "Wazuh", "Pi-hole", "Immich", "Jellyfin", "Twingate", "Tailscale"],
+    tags: ["Ubuntu Server", "Docker", "Wazuh", "Pi-hole", "Immich", "Jellyfin", "Tailscale"],
     metrics: [
       { value: "$0", label: "recurring cost" },
       { value: "2", label: "paid services replaced (Photos, Netflix)" },
       { value: "4+", label: "self-hosted services" },
-      { value: "2", label: "zero-trust access layers" },
+      { value: "0", label: "services exposed publicly" },
       { value: "DNS", label: "network-wide ad & malware blocking" },
       { value: "Headless", label: "Ubuntu server from an old laptop" },
     ],
     pipeline: [
-      { label: "Twingate / Tailscale", detail: "Zero-trust access" },
+      { label: "Tailscale", detail: "Zero-trust access" },
+      { label: "Caddy", detail: "Reverse proxy" },
       { label: "Ubuntu Server", detail: "Headless, repurposed" },
       { label: "Pi-hole + Wazuh", detail: "DNS sinkhole + SIEM" },
-      { label: "Immich + Jellyfin", detail: "Photos + media" },
+      [
+        { label: "Immich + Jellyfin", detail: "Photos + media" },
+        { label: "Game server + n8n", detail: "LAN gaming + automation" },
+      ],
     ],
     bullets: [
-      "Repurposed an old laptop as a headless Ubuntu server, with admin access secured through a Twingate zero-trust VPN and Tailscale. Nothing is exposed publicly.",
+      "Repurposed an old laptop as a headless Ubuntu server, with admin access secured through a Tailscale zero-trust VPN. Nothing is exposed publicly.",
       "Deployed Wazuh SIEM to centralise security logs from connected devices, and Pi-hole as a network-wide DNS sinkhole for ads and malicious domains.",
       "Replaced paid photo storage and streaming with self-hosted Immich and Jellyfin, and tuned custom routing for low-latency LAN game servers.",
     ],
@@ -149,7 +155,7 @@ export const education = {
 export const skills: { group: string; items: string[] }[] = [
   {
     group: "Cloud & Infrastructure",
-    items: ["Azure", "AWS", "Oracle Cloud (OCI)", "Docker", "NGINX", "Git", "Linux administration", "Twingate"],
+    items: ["Azure", "AWS", "Oracle Cloud (OCI)", "Docker", "NGINX", "Git", "Linux administration", "Tailscale"],
   },
   {
     group: "Security",

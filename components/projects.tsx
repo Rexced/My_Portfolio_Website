@@ -4,29 +4,70 @@ import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { Reveal, SectionHeading } from "@/components/reveal"
-import { projects, type PipelineNode, type Project } from "@/data/content"
+import { projects, type PipelineNode, type PipelineStep, type Project } from "@/data/content"
 import { cn } from "@/lib/utils"
 
-function Pipeline({ nodes }: { nodes: PipelineNode[] }) {
+// Vertical flow on phones, horizontal from md up
+function Wire() {
+  return (
+    <>
+      <div className="wire wire-y mx-auto h-6 w-px md:hidden" aria-hidden />
+      <div className="wire wire-x hidden h-px w-6 shrink-0 md:block lg:w-8" aria-hidden />
+    </>
+  )
+}
+
+function Tile({ node, delay }: { node: PipelineNode; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+      className="min-w-0 flex-1 rounded-lg border border-border-strong bg-surface px-3 py-2.5 text-center"
+    >
+      <p className="font-mono text-xs font-medium text-accent">{node.label}</p>
+      <p className="mt-0.5 text-[11px] leading-snug text-muted">{node.detail}</p>
+    </motion.div>
+  )
+}
+
+/**
+ * Branches sit side by side on phones and stacked on md+. Each branch draws its own piece of the
+ * spine (from its centre to the gap edge), so the spine joins the branch centres even if tiles differ in height.
+ * The ±1.5 offsets are half of the gap-3 between branches.
+ */
+function Fork({ nodes, delay }: { nodes: PipelineNode[]; delay: number }) {
+  return (
+    <div className="flex min-w-0 flex-1 flex-row gap-3 md:flex-col">
+      {nodes.map((n, i) => {
+        const first = i === 0
+        const last = i === nodes.length - 1
+        return (
+          <div key={n.label} className="relative flex min-w-0 flex-1 flex-col md:flex-row md:items-center">
+            <span
+              className={cn("absolute top-0 h-px bg-border-strong md:hidden", first ? "left-1/2" : "-left-1.5", last ? "right-1/2" : "-right-1.5")}
+              aria-hidden
+            />
+            <span
+              className={cn("absolute left-0 hidden w-px bg-border-strong md:block", first ? "top-1/2" : "-top-1.5", last ? "bottom-1/2" : "-bottom-1.5")}
+              aria-hidden
+            />
+            <Wire />
+            <Tile node={n} delay={delay + 0.08 * i} />
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function Pipeline({ steps }: { steps: PipelineStep[] }) {
   return (
     <div className="flex flex-col items-stretch md:flex-row md:items-center">
-      {nodes.map((n, i) => (
-        <div key={n.label} className="contents">
-          {i > 0 && (
-            <>
-              <div className="wire wire-y mx-auto h-6 w-px md:hidden" aria-hidden />
-              <div className="wire wire-x hidden h-px w-6 shrink-0 md:block lg:w-8" aria-hidden />
-            </>
-          )}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 * i }}
-            className="min-w-0 flex-1 rounded-lg border border-border-strong bg-surface px-3 py-2.5 text-center"
-          >
-            <p className="font-mono text-xs font-medium text-accent">{n.label}</p>
-            <p className="mt-0.5 text-[11px] leading-snug text-muted">{n.detail}</p>
-          </motion.div>
+      {steps.map((step, i) => (
+        <div key={Array.isArray(step) ? step.map((n) => n.label).join("|") : step.label} className="contents">
+          {i > 0 && <Wire />}
+          {Array.isArray(step) ? <Fork nodes={step} delay={0.08 * i} /> : <Tile node={step} delay={0.08 * i} />}
         </div>
       ))}
     </div>
@@ -99,7 +140,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               {/* Inset panel: the explanation is visibly contained inside the card */}
               <div className="mt-5 border-y border-dashed border-border-strong bg-bg px-5 py-6 sm:mt-7 sm:px-7 xl:mt-0 xl:border-b-0">
                 <p className="mb-3 font-mono text-xs text-muted">// how it fits together</p>
-                <Pipeline nodes={project.pipeline} />
+                <Pipeline steps={project.pipeline} />
                 <ul className="mt-6 space-y-3 text-sm leading-relaxed text-muted">
                   {project.bullets.map((b) => (
                     <li key={b} className="flex gap-3">
