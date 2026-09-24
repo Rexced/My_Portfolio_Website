@@ -15,7 +15,7 @@ The portfolio is a **fully static site**. `npm run build` pre-renders every page
 
 | Tool | Version | Used for |
 |---|---|---|
-| [Tailwind CSS](https://tailwindcss.com) | 4.3 | Utility classes. Theme tokens (`--accent`, `--surface`…) live in `app/globals.css` under `@theme inline`. It's light by default (white, near-black text, jade `#0b7a54`), with a dark theme under `:root[data-theme="dark"]`. The `.terminal` class re-declares the tokens so the hero terminal is always a dark island. There's no `tailwind.config` file. |
+| [Tailwind CSS](https://tailwindcss.com) | 4.3 | Utility classes. Theme tokens (`--accent`, `--surface`…) live in `app/globals.css` under `@theme inline`. It's light by default (white, near-black text, jade `#0b7a54`), with a dark theme under `:root[data-theme="dark"]`. The `.terminal` class re-declares the tokens so the hero terminal looks like macOS Terminal: white with a grey title bar in light mode, dark in dark mode. There's no `tailwind.config` file. |
 | `@tailwindcss/postcss` | 4.3 | Tailwind v4's PostCSS plugin (`postcss.config.mjs`) |
 | `clsx` + `tailwind-merge` | 2.1 / 3.7 | `cn()` helper in `lib/utils.ts` for conditional class names |
 | Google Fonts via `next/font` | – | **JetBrains Mono** (headings, terminal) and **Inter** (body), self-hosted at build time |

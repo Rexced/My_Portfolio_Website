@@ -128,7 +128,7 @@ function Terminal() {
 
   return (
     <div className="terminal flex min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-surface text-fg shadow-[0_30px_60px_-20px_rgb(0_0_0/0.35)]">
-      <div className="flex shrink-0 items-center gap-2 border-b border-border px-4 py-2.5">
+      <div className="flex shrink-0 items-center gap-2 border-b border-border bg-surface-2 px-4 py-2.5">
         <span className="size-2.5 rounded-full bg-[#ff5f57]" />
         <span className="size-2.5 rounded-full bg-[#febc2e]" />
         <span className="size-2.5 rounded-full bg-[#28c840]" />

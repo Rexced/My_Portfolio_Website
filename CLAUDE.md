@@ -21,7 +21,7 @@ There are no tests or linter. Run `npm run typecheck` and `npm run build` to ver
 - `lib/region.ts` defines the three resume versions (PK, US, UK/IE), their PDFs in `public/cv/`, and the timezone-based `guessRegion()`.
 - `components/region-provider.tsx` is the region context. `/pk/`, `/us/` and `/uk/` pin a region; `/` guesses it after mount.
 - `components/home.tsx` composes the page sections, and each route's `page.tsx` renders `<Home region=... />`.
-- `app/globals.css` holds the theme tokens under `@theme inline`. Light is the default, dark lives under `:root[data-theme="dark"]`, and `.terminal` is always dark. There's no `tailwind.config`.
+- `app/globals.css` holds the theme tokens under `@theme inline`. Light is the default, dark lives under `:root[data-theme="dark"]`, and `.terminal` re-declares the tokens (macOS-Terminal light by default, dark under the dark theme). There's no `tailwind.config`.
 
 ## Constraints
 

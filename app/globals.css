@@ -29,10 +29,24 @@
   color-scheme: dark;
 }
 
-/* Dark "island" for the terminal: utilities inside it pick up these values */
+/* Terminal tokens: utilities inside it pick up these values.
+   Light mode mirrors macOS Terminal's light look: white window, grey title bar, black text */
 .terminal {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #ececec;
+  --border: rgb(0 0 0 / 0.12);
+  --border-strong: rgb(0 0 0 / 0.2);
+  --fg: #1d1d1f;
+  --muted: #6e6e73;
+  --accent: #0b7a54;
+  --accent-2: #1d6b85;
+}
+
+:root[data-theme="dark"] .terminal {
   --bg: #0e1312;
   --surface: #0e1312;
+  --surface-2: #0e1312;
   --border: rgb(255 255 255 / 0.08);
   --border-strong: rgb(255 255 255 / 0.14);
   --fg: #e4ebe8;
