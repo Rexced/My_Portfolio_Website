@@ -8,7 +8,7 @@ type RegionInfo = {
   label: string
   /** What the document is called in that market */
   docName: "Resume" | "CV"
-  /** Served from /public */
+  /** Served from /public; includes the basePath because plain <a href> doesn't get it added */
   file: string
   /** Filename the browser saves it as */
   downloadAs: string
@@ -20,21 +20,21 @@ export const REGION_INFO: Record<Region, RegionInfo> = {
   pk: {
     label: "PK",
     docName: "Resume",
-    file: "/cv/saim-wajid-resume-pk.pdf",
+    file: "/Portfolio/cv/saim-wajid-resume-pk.pdf",
     downloadAs: "Saim_Wajid_Resume.pdf",
     availability: "Karachi, Pakistan · On-site, hybrid or remote",
   },
   us: {
     label: "US",
     docName: "Resume",
-    file: "/cv/saim-wajid-resume-us.pdf",
+    file: "/Portfolio/cv/saim-wajid-resume-us.pdf",
     downloadAs: "Saim_Wajid_Resume_US.pdf",
     availability: "Remote (GMT+5), flexible for US hours · Open to relocation",
   },
   uk: {
     label: "UK / IE",
     docName: "CV",
-    file: "/cv/saim-wajid-cv-uk-ie.pdf",
+    file: "/Portfolio/cv/saim-wajid-cv-uk-ie.pdf",
     downloadAs: "Saim_Wajid_CV_UK_Ireland.pdf",
     availability: "Open to relocation (Glasgow · Edinburgh · Dublin) or remote",
   },

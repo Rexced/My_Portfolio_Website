@@ -8,6 +8,8 @@ const lanAddresses = Object.values(networkInterfaces())
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Served from https://rexced.github.io/Portfolio/ (must match the repo name exactly)
+  basePath: "/Portfolio",
   // Fully static site in `out/` for GitHub Pages
   output: "export",
   // `/us` -> `/us/index.html`, which GitHub Pages serves without extra config

@@ -10,7 +10,7 @@ const description =
   "Portfolio of Saim Wajid, a CS graduate building and securing cloud infrastructure, SIEM pipelines and self-hosted systems."
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rexced.github.io"),
+  metadataBase: new URL("https://rexced.github.io/Portfolio"),
   title,
   description,
   openGraph: { title, description, url: "/", siteName: "Saim Wajid", type: "website" },
