@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Check, Copy, Github, Linkedin, Mail } from "lucide-react"
-import { CvDownload, RegionToggle } from "@/components/cv-controls"
+import { CvDownload } from "@/components/cv-controls"
 import { useRegion } from "@/components/region-provider"
 import { Reveal, SectionHeading } from "@/components/reveal"
 import { profile } from "@/data/content"
@@ -82,12 +82,12 @@ export function Contact() {
           <div>
             <p className="font-mono text-xs text-muted">// {info.docName.toLowerCase()}</p>
             <p className="mt-2 leading-relaxed text-muted">
-              Tailored versions for Pakistan, US and UK / Ireland applications. Pick the one that fits your team.
+              Prefer a document? Download my {info.docName.toLowerCase()} to share with your team.
             </p>
             <p className="mt-3 font-mono text-xs text-accent-2">{info.availability}</p>
+            {info.contactNote && <p className="mt-1.5 font-mono text-xs text-accent-2">{info.contactNote}</p>}
           </div>
-          <div className="space-y-4">
-            <RegionToggle />
+          <div>
             <CvDownload />
           </div>
         </Reveal>

@@ -3,12 +3,12 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
 import { guessRegion, type Region } from "@/lib/region"
 
-type RegionContextValue = { region: Region; setRegion: (r: Region) => void }
+type RegionContextValue = { region: Region }
 
 const RegionContext = createContext<RegionContextValue | null>(null)
 
 /**
- * `fixed` comes from the route (/us, /uk) and wins outright.
+ * `fixed` comes from the route (/pk, /us, /uk) and wins outright; visitors can't switch versions.
  * Without it, the page renders "pk" and switches to the timezone guess after mount.
  */
 export function RegionProvider({ fixed, children }: { fixed?: Region; children: ReactNode }) {
@@ -18,7 +18,7 @@ export function RegionProvider({ fixed, children }: { fixed?: Region; children: 
     if (!fixed) setRegion(guessRegion())
   }, [fixed])
 
-  return <RegionContext.Provider value={{ region, setRegion }}>{children}</RegionContext.Provider>
+  return <RegionContext.Provider value={{ region }}>{children}</RegionContext.Provider>
 }
 
 export function useRegion() {

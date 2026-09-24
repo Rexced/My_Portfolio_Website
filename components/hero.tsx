@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowDown } from "lucide-react"
-import { CvDownload, RegionToggle } from "@/components/cv-controls"
+import { CvDownload } from "@/components/cv-controls"
 import { useRegion } from "@/components/region-provider"
 import { education, experience, profile, projects } from "@/data/content"
 import { REGION_INFO } from "@/lib/region"
@@ -174,7 +174,7 @@ function Terminal() {
 export function Hero() {
   return (
     // Below lg the hero is exactly one screen tall (svh = smallest viewport, so browser bars never cover it):
-    // the terminal shrinks to fit and the buttons + version switch sit just above the bottom edge.
+    // the terminal shrinks to fit and the buttons sit just above the bottom edge.
     <section
       id="top"
       className="flex h-[100svh] flex-col pt-20 pb-[max(1.25rem,env(safe-area-inset-bottom))] lg:block lg:h-auto lg:pt-28 lg:pb-24"
@@ -225,7 +225,6 @@ export function Hero() {
                 </a>
                 <CvDownload />
               </div>
-              <RegionToggle className="justify-center" />
             </div>
           </motion.div>
         </div>

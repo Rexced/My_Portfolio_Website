@@ -44,7 +44,7 @@ All motion respects the OS **reduced-motion** setting, through `MotionConfig red
 
 This is plain TypeScript with no third-party service, cookies or IP lookup.
 
-- `lib/region.ts` defines the three versions in toggle order **PK → US → UK/IE**, plus their PDFs and a timezone-based `guessRegion()`.
+- `lib/region.ts` defines the three versions (**PK**, **US**, **UK/IE**), plus their PDFs and a timezone-based `guessRegion()`.
 - `components/region-provider.tsx` is a React context. `/pk/`, `/us/` and `/uk/` pin the version. On `/`, the version is guessed from `Intl.DateTimeFormat().resolvedOptions().timeZone`.
 - PDFs live in `public/cv/`.
 
