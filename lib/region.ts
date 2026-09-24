@@ -25,13 +25,13 @@ export const REGION_INFO: Record<Region, RegionInfo> = {
     docName: "Resume",
     file: "/Portfolio/cv/saim-wajid-resume-us.pdf",
     downloadAs: "Saim_Wajid_Resume_US.pdf",
-    availability: "Remote (GMT+5), flexible for US hours · Open to relocate (will require sponsorship)",
+    availability: "Remote (GMT+5), flexible for US hours · Open to relocate (sponsorship required)",
   },
   uk: {
     docName: "CV",
     file: "/Portfolio/cv/saim-wajid-cv-uk-ie.pdf",
     downloadAs: "Saim_Wajid_CV_UK_Ireland.pdf",
-    availability: "Open to relocate (Glasgow · Edinburgh · Dublin; will require sponsorship) or remote (UTC+5)",
+    availability: "Open to relocate (Glasgow · Edinburgh · Dublin; sponsorship required) or remote (UTC+5)",
   },
 }
 
